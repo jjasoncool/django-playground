@@ -5,7 +5,8 @@ services:
         build:
             context: "./django/"
             args:
-              PROJECT_NAME: "djangoweb"
+              PY_VER: ${PY_VER}
+              PROJECT_NAME: ${PROJECT_NAME}
         environment:
             - TZ=Asia/Taipei
         ports:
