@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+    django:
+        build:
+            context: "./django/"
+        environment:
+            - TZ=Asia/Taipei
+        ports:
+            - "8000:8000"
+        # volumes:
+        #     - django-src:/usr/src/app
+        container_name: "django"
+        restart: always
+
+volumes:
+    django-src:
+        driver: local
+        driver_opts:
+            type: "none"
+            o: "bind"
+            device: "./src/"
+        external: false
