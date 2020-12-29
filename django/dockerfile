@@ -5,12 +5,13 @@ RUN apt-get update \
         postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /config
 WORKDIR /usr/src/app
-
+RUN mkdir /config
 COPY requirements.txt /config/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r /config/requirements.txt
 
-EXPOSE 8000
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ARG PROJECT_NAME
+RUN django-admin startproject ${PROJECT_NAME}
+ENV PROJECT_NAME=${PROJECT_NAME}
+CMD python ${PROJECT_NAME}/manage.py runserver 0.0.0.0:8000

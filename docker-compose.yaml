@@ -4,12 +4,14 @@ services:
     django:
         build:
             context: "./django/"
+            args:
+              PROJECT_NAME: "djangoweb"
         environment:
             - TZ=Asia/Taipei
         ports:
-            - "8000:8000"
-        # volumes:
-        #     - django-src:/usr/src/app
+            - "${WEB_PORT}:8000"
+        volumes:
+            - django-src:/usr/src/app
         container_name: "django"
         restart: always
 
