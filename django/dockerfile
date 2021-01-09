@@ -14,5 +14,8 @@ RUN pip install -r /config/requirements.txt
 
 ARG PROJECT_NAME
 RUN django-admin startproject ${PROJECT_NAME}
+
+WORKDIR /usr/src/app/${PROJECT_NAME}
 ENV PROJECT_NAME=${PROJECT_NAME}
-CMD python ${PROJECT_NAME}/manage.py runserver 0.0.0.0:8000
+RUN python manage.py startapp mainsite
+CMD python manage.py runserver 0.0.0.0:8000
