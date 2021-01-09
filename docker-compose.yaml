@@ -9,12 +9,28 @@ services:
               PROJECT_NAME: ${PROJECT_NAME}
         environment:
             - TZ=Asia/Taipei
-        ports:
-            - "${WEB_PORT}:8000"
+        expose:
+            - "${WEB_PORT}"
         volumes:
             - django-src:/usr/src/app
         container_name: "django"
         restart: always
+
+    nginx:
+        build:
+            context: "./nginx/"
+            args:
+                NGINX_VERSION: ${NGINX_VERSION}
+        environment:
+            - TZ=Asia/Taipei
+            - NGINX_PORT=${NGINX_PORT}
+        expose:
+            - "80"
+        volumes:
+            - nginx-config:/etc/nginx/templates/
+        container_name: "${NGINX_NAME}"
+        restart: always
+
 
 volumes:
     django-src:
@@ -23,4 +39,12 @@ volumes:
             type: "none"
             o: "bind"
             device: "./src/"
+        external: false
+
+    nginx-config:
+        driver: local
+        driver_opts:
+            type: "none"
+            o: "bind"
+            device: "./config/nginx/"
         external: false
