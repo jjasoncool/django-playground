@@ -17,9 +17,9 @@ server {
     location / {
         include /etc/nginx/uwsgi_params;
         uwsgi_pass django;
-        uwsgi_read_timeout 600;
-        uwsgi_connect_timeout 600;
-        uwsgi_send_timeout 600;
+        uwsgi_read_timeout 60;
+        uwsgi_connect_timeout 60;
+        uwsgi_send_timeout 60;
     }
 
     #error_page  404              /404.html;
