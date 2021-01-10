@@ -30,8 +30,8 @@ services:
             - ${NGINX_PORT}
         volumes:
             - nginx-config:/etc/nginx/templates/
-            - ./src/${PROJECT_NAME}/${PROJECT_NAME}/static:/usr/share/nginx/html/static
-            - ./src/${PROJECT_NAME}/${PROJECT_NAME}/media:/usr/share/nginx/html/media
+            - ./src/${PROJECT_NAME}/static:/usr/share/nginx/html/static
+            - ./src/${PROJECT_NAME}/media:/usr/share/nginx/html/media
         container_name: "${NGINX_NAME}"
         restart: always
 
