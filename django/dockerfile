@@ -25,7 +25,10 @@ COPY uwsgi.ini uwsgi.ini
 RUN python manage.py startapp mainsite
 RUN mkdir ./${PROJECT_NAME}/static
 RUN mkdir ./${PROJECT_NAME}/media
-RUN echo 'import os\n\
+# 取代預設STATIC_URL字串
+RUN sed -i 's/STATIC_URL = '\''\/static\/'\''/import os\n/g;' ./${PROJECT_NAME}/settings.py
+# 新增設定
+RUN echo '\
 # STATIC ROOT 和 STATIC URL\n\
 STATIC_ROOT = os.path.join(BASE_DIR, "static")\n\
 STATIC_URL = "/static/"\n\

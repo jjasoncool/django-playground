@@ -10,7 +10,7 @@ services:
         environment:
             - TZ=Asia/Taipei
         expose:
-            - "${WEB_PORT}"
+            - "${DJANGO_PORT}"
         volumes:
             - django-src:/usr/src/app
         container_name: "django"
@@ -24,10 +24,13 @@ services:
         environment:
             - TZ=Asia/Taipei
             - NGINX_PORT=${NGINX_PORT}
+        depends_on: django
         expose:
             - "80"
         volumes:
             - nginx-config:/etc/nginx/templates/
+            - ./src/${PROJECT_NAME}/${PROJECT_NAME}/static:/usr/share/nginx/html/static
+            - ./src/${PROJECT_NAME}/${PROJECT_NAME}/media:/usr/share/nginx/html/media
         container_name: "${NGINX_NAME}"
         restart: always
 

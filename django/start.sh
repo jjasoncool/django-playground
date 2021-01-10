@@ -7,5 +7,7 @@
 # python manage.py collectstatic --noinput &&
 python manage.py makemigrations &&
 python manage.py migrate &&
-uwsgi --ini /usr/src/app/${PROJECT_NAME}/uwsgi.ini
-# python manage.py runserver 0.0.0.0:8000
+# uwsgi
+# uwsgi --ini /usr/src/app/${PROJECT_NAME}/uwsgi.ini
+# development server
+python manage.py runserver 0.0.0.0:8000
