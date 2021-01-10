@@ -24,7 +24,8 @@ services:
         environment:
             - TZ=Asia/Taipei
             - NGINX_PORT=${NGINX_PORT}
-        depends_on: django
+        depends_on:
+            - django
         expose:
             - "80"
         volumes:
