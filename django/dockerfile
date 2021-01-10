@@ -16,6 +16,24 @@ ARG PROJECT_NAME
 RUN django-admin startproject ${PROJECT_NAME}
 
 WORKDIR /usr/src/app/${PROJECT_NAME}
+# uwsgi
 ENV PROJECT_NAME=${PROJECT_NAME}
+COPY start.sh start.sh
+RUN chmod +x ./start.sh
+COPY uwsgi.ini uwsgi.ini
+# create project
 RUN python manage.py startapp mainsite
-CMD python manage.py runserver 0.0.0.0:8000
+RUN mkdir ./${PROJECT_NAME}/static
+RUN mkdir ./${PROJECT_NAME}/media
+# 取代預設 ALLOW_HOST 與 STATIC_URL字串
+RUN sed -i 's|ALLOWED_HOSTS = \[\]|ALLOWED_HOSTS = \["nginx"\]|g; s|STATIC_URL = '\''/static/'\''|import os\n|g;' ./${PROJECT_NAME}/settings.py
+# 新增設定
+RUN echo '\
+# STATIC ROOT 和 STATIC URL\n\
+STATIC_ROOT = os.path.join(BASE_DIR, "static")\n\
+STATIC_URL = "/static/"\n\
+# MEDIA ROOT 和 MEDIA URL\n\
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")\n\
+MEDIA_URL = "/media/"' >> ./${PROJECT_NAME}/settings.py
+# start service
+CMD bash ./start.sh
