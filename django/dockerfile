@@ -13,6 +13,7 @@ RUN pip install --upgrade pip
 RUN pip install -r /config/requirements.txt
 
 ARG PROJECT_NAME
+ARG ALLOWED_HOSTS
 RUN django-admin startproject ${PROJECT_NAME}
 
 WORKDIR /usr/src/app/${PROJECT_NAME}
@@ -23,10 +24,8 @@ RUN chmod +x ./start.sh
 COPY uwsgi.ini uwsgi.ini
 # create project
 RUN python manage.py startapp mainsite
-RUN mkdir ./${PROJECT_NAME}/static
-RUN mkdir ./${PROJECT_NAME}/media
 # 取代預設 ALLOW_HOST 與 STATIC_URL字串
-RUN sed -i 's|ALLOWED_HOSTS = \[\]|ALLOWED_HOSTS = \["django_nginx"\]|g; s|STATIC_URL = '\''/static/'\''|import os\n|g;' ./${PROJECT_NAME}/settings.py
+RUN sed -i "s|ALLOWED_HOSTS = \[\]|ALLOWED_HOSTS = \[${ALLOWED_HOSTS}\]|g; s|STATIC_URL = '/static/'|import os\n|g;" ./${PROJECT_NAME}/settings.py
 # 新增設定
 RUN echo '\
 # STATIC ROOT 和 STATIC URL\n\

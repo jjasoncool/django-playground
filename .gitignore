@@ -1,3 +1,4 @@
 .env
 /config/*
+/src/*
 __pycache__/
