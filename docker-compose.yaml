@@ -26,8 +26,8 @@ services:
             - NGINX_PORT=${NGINX_PORT}
         depends_on:
             - django
-        expose:
-            - ${NGINX_PORT}
+        ports:
+            - 8000:${NGINX_PORT}
         volumes:
             - nginx-config:/etc/nginx/templates/
             - ./src/${PROJECT_NAME}/static:/usr/share/nginx/html/static
