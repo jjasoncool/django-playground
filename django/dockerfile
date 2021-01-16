@@ -24,8 +24,10 @@ RUN chmod +x ./start.sh
 COPY uwsgi.ini uwsgi.ini
 # create project
 RUN python manage.py startapp mainsite
+# import os
+RUN sed -i "s|from pathlib import Path|import os\nfrom pathlib import Path|g;" ./${PROJECT_NAME}/settings.py
 # 取代預設 ALLOW_HOST 與 STATIC_URL字串
-RUN sed -i "s|ALLOWED_HOSTS = \[\]|ALLOWED_HOSTS = \[${ALLOWED_HOSTS}\]|g; s|STATIC_URL = '/static/'|import os\n|g;" ./${PROJECT_NAME}/settings.py
+RUN sed -i "s|ALLOWED_HOSTS = \[\]|ALLOWED_HOSTS = \[${ALLOWED_HOSTS}\]|g; s|STATIC_URL = '/static/'||g;" ./${PROJECT_NAME}/settings.py
 # 新增設定
 RUN echo '\
 # STATIC ROOT 和 STATIC URL\n\
