@@ -24,3 +24,4 @@ class Product(models.Model):
     name = models.CharField(max_length=20)
     price = models.PositiveIntegerField()
     size = models.CharField(max_length=1, choices=SIZES)
+    qty = models.PositiveIntegerField(default=0)
