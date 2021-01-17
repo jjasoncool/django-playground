@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mainsite.views import homepage
-from MTV01.views import about, listing
+from MTV01.views import about, listing, disp_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     # app MTV01
     path('MTV01/about/', about),
     path('MTV01/list/', listing),
+    path('MTV01/list/<sku>/', disp_detail),
 ]
