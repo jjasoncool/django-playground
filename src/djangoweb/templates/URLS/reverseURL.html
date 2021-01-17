@@ -1,0 +1,12 @@
+<!-- inde x.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Home Page</title>
+</head>
+<body>
+<h2>{% url 'reverse_path' yr mon day post_num %}</h2>
+<a href="{% url 'reverse_chgPath' yr mon day post_num %}">點我改變 path</a>
+</body>
+</html>
