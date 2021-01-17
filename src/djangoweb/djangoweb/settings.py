@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainsite',
     'MTV01',
+    'URLS',
 ]
 
 MIDDLEWARE = [
