@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mainsite',
     'MTV01',
     'URLS',
+    'MyTemplates',
 ]
 
 MIDDLEWARE = [
