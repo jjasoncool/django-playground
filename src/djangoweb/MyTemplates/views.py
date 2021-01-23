@@ -54,19 +54,19 @@ def carprice(request, makerid=0):
     car_maker = ['Ford', 'Honda', 'Mazda']
     car_list = [
         [
-            {'model': 'Fiesta', 'price': 203500},
-            {'model': 'Focus', 'price': 605000},
-            {'model': 'Mustang', 'price': 900000}
+            {'model': 'Fiesta', 'price': 203500, 'qty':2},
+            {'model': 'Focus', 'price': 605000, 'qty':5},
+            {'model': 'Mustang', 'price': 900000, 'qty':9},
         ],
         [
-            {'model': 'Fit', 'price': 450000},
-            {'model': 'City', 'price': 150000},
-            {'model': 'NSX', 'price': 1200000}
+            {'model': 'Fit', 'price': 450000, 'qty':4},
+            {'model': 'City', 'price': 150000, 'qty':31},
+            {'model': 'NSX', 'price': 1200000, 'qty':15},
         ],
         [
-            {'model': 'Mazda3', 'price': 329999},
-            {'model': 'Mazda5', 'price': 603000},
-            {'model': 'Mazda6', 'price': 850000}
+            {'model': 'Mazda3', 'price': 329999, 'qty':6},
+            {'model': 'Mazda5', 'price': 603000, 'qty':7},
+            {'model': 'Mazda6', 'price': 850000, 'qty':1},
         ],
     ]
     maker_name = car_maker[makerid]

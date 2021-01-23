@@ -1,10 +1,17 @@
+{% extends "MyTemplates/index.html" %}
 <!-- carlist.html (p06 Template project) -->
 <!DOCTYPE html>
 <html>
+{% block content %}
 
 <head>
     <meta charset='utf-8'>
     <title>模型車賣場</title>
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,12 +32,12 @@
     <table>
         <tr>
             {% block column %}
-            <td>車廠</td>
-            <td>車款</td>
+            <th>車廠</th>
+            <th>車款</th>
             {% endblock %}
         </tr>
         {% endif %}
-        {% block content %}
+        {% block table_content %}
         {% for c in cars %}
         <tr bgcolor="{% cycle '#eeeeee' '#cccccc' %}">
             <td>{{maker_name}}</td>
@@ -44,5 +51,5 @@
     </table>
     {% endif %}
 </body>
-
+{% endblock %}
 </html>
