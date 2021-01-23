@@ -20,3 +20,15 @@ def tv(request, tvid=0):
     now = datetime.now()
     tv = tv_list[tvid]
     return render(request, 'MyTemplates/tv.html', locals())
+
+
+def engtv(request, tvid='0'):
+    tv_list = [
+        {'name': 'SkyNews', 'tvcode': '99U4CH_k5F0'},
+        {'name': 'Euro News', 'tvcode': 'F-uW_IswLh8'},
+        {'name': 'India News', 'tvcode': 'E7dbhET6_EA'},
+        {'name': 'CCTV', 'tvcode': 'vCDDYb_M2B4'},
+    ]
+    now = datetime.now()
+    tv = tv_list[int(tvid)]
+    return render(request, 'MyTemplates/engtv.html', locals())

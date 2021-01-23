@@ -18,7 +18,7 @@ from django.urls import include, path, reverse
 from mainsite.views import homepage
 from MTV01.views import about, listing, disp_detail
 from URLS.views import homepage as url_home, about as url_about, reverse_url
-from MyTemplates.views import index as tp_index, tv
+from MyTemplates.views import index as tp_index, tv, engtv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,4 +40,6 @@ urlpatterns = [
     path('MyTemplates/', tp_index),
     path('MyTemplates/tv/', tv, name='tv_url'),
     path('MyTemplates/tv/<int:tvid>/', tv, name='tv_url'),
+    path('MyTemplates/engtv/', engtv, name='engtv_url'),
+    path('MyTemplates/engtv/<int:tvid>/', engtv, name='engtv_url'),
 ]
