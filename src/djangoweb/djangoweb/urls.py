@@ -18,7 +18,7 @@ from django.urls import include, path, reverse
 from mainsite.views import homepage
 from MTV01.views import about, listing, disp_detail
 from URLS.views import homepage as url_home, about as url_about, reverse_url
-from MyTemplates.views import index as tp_index, tv, engtv
+from MyTemplates.views import index as tp_index, tv, engtv, carlist, carprice
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,4 +42,8 @@ urlpatterns = [
     path('MyTemplates/tv/<int:tvid>/', tv, name='tv_url'),
     path('MyTemplates/engtv/', engtv, name='engtv_url'),
     path('MyTemplates/engtv/<int:tvid>/', engtv, name='engtv_url'),
+    path('MyTemplates/carlist/', carlist, name='carlist_url'),
+    path('MyTemplates/carlist/<int:makerid>/', carlist, name='carlist_url'),
+    path('MyTemplates/carprice/', carprice, name='carprice_url'),
+    path('MyTemplates/carprice/<int:makerid>/', carprice, name='carprice_url'),
 ]

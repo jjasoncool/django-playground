@@ -10,6 +10,13 @@
 <body>
     <h1>Welcome to my site</h1>
     {{msg}}
+    {% if hour > 18 %}
+    晚安
+    {% elif hour < 10 %}
+    早安
+    {% else %}
+    午安
+    {% endif %}
     <hr>
     <em>
         {{ now }}

@@ -4,10 +4,9 @@
 {% block menu %}
     <ul class='nav navbar-nav'>
         <li class='active'><a href='/'>Home</a></li>
-        <li><a href="{% url 'tv_url' 0 %}"">東森</a></li>
-        <li><a href="{% url 'tv_url' 1 %}"">民視</a></li>
-        <li><a href="{% url 'tv_url' 2 %}"">台視</a></li>
-        <li><a href="{% url 'tv_url' 3 %}"">華視</a></li>
+        {% for t in tv_list %}
+            <li><a href="{% url 'tv_url' forloop.counter0 %}"">{{ t.name }}</a></li>
+        {% endfor %}
     </ul>
 {% endblock %}
 {% block content%}

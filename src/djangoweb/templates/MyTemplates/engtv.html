@@ -4,10 +4,9 @@
 {% block menu %}
 <ul class='nav navbar-nav'>
     <li class='active'><a href='/'>Home</a></li>
-    <li><a href="{% url 'engtv_url' 0 %}">Sky News</a></li>
-    <li><a href="{% url 'engtv_url' 1 %}">Euro News</a></li>
-    <li><a href="{% url 'engtv_url' 2 %}">Indea News</a></li>
-    <li><a href="{% url 'engtv_url' 3 %}">CCTV</a></li>
+    {% for t in tv_list %}
+        <li><a href="{% url 'engtv_url' forloop.counter0 %}"">{{ t.name }}</a></li>
+    {% endfor %}
 </ul>
 {% endblock %}
 {% block content%}

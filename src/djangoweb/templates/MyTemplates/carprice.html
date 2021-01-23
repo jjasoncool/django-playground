@@ -1,0 +1,22 @@
+{% extends "MyTemplates/carlist.html" %}
+{% block url %}
+<a href="{% url 'carprice_url' forloop.counter0 %}">{{m}}</a>
+{% endblock %}
+{% block column %}
+<tr>
+    <td>車廠</td>
+    <td>車款</td>
+    <td>價格</td>
+</tr>
+{% endblock %}
+{% block content %}
+    {% for c in cars %}
+    <tr bgcolor="{% cycle '#eeeeee' '#cccccc' %}">
+        <td>{{maker_name}}</td>
+        <td>{{ c.modal }}</td>
+        <td>NT${{ c.price }}</td>
+    </tr>
+    {% empty %}
+    <h3>車廠<em>{{maker_name}}</em>目前無庫存車</h3>
+    {% endfor %}
+{% endblock %}

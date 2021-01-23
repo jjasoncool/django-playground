@@ -7,6 +7,7 @@ from datetime import datetime
 def index(request):
     msg = 'Hello'
     now = datetime.now()
+    hour = now.timetuple().tm_hour
     return render(request, 'MyTemplates/index.html', locals())
 
 
@@ -32,3 +33,42 @@ def engtv(request, tvid='0'):
     now = datetime.now()
     tv = tv_list[int(tvid)]
     return render(request, 'MyTemplates/engtv.html', locals())
+
+
+def carlist(request, makerid=0):
+    car_maker = ['SAAB', 'Ford', 'Honda', 'Mazda', 'Nissan', 'Toyota']
+    car_list = [
+        [],
+        ['Fiesta', 'Focus', 'Modeo', 'EcoSport', 'Kuga', 'Mustang'],
+        ['Fit', 'Odyssey', 'CR-V', 'City', 'NSX'],
+        ['Mazda3', 'Mazda5', 'Mazda6', 'CX-3', 'CX-5', 'MX-5'],
+        ['Tida', 'March', 'Livina', 'Sentra', 'Teana', 'X-Trail', 'Juke', 'Murano'],
+        ['Camry', 'Altis', 'Yaris', '86', 'Prius', 'Vios', 'RAV4', 'Wish']
+    ]
+    maker_name = car_maker[makerid]
+    cars = car_list[makerid]
+    return render(request, 'MyTemplates/carlist.html', locals())
+
+
+def carprice(request, makerid=0):
+    car_maker = ['Ford', 'Honda', 'Mazda']
+    car_list = [
+        [
+            {'model': 'Fiesta', 'price': 203500},
+            {'model': 'Focus', 'price': 605000},
+            {'model': 'Mustang', 'price': 900000}
+        ],
+        [
+            {'model': 'Fit', 'price': 450000},
+            {'model': 'City', 'price': 150000},
+            {'model': 'NSX', 'price': 1200000}
+        ],
+        [
+            {'model': 'Mazda3', 'price': 329999},
+            {'model': 'Mazda5', 'price': 603000},
+            {'model': 'Mazda6', 'price': 850000}
+        ],
+    ]
+    maker_name = car_maker[makerid]
+    cars = car_list[makerid]
+    return render(request, 'MyTemplates/carprice.html', locals())
