@@ -19,6 +19,7 @@ from mainsite.views import homepage
 from MTV01.views import about, listing, disp_detail
 from URLS.views import homepage as url_home, about as url_about, reverse_url
 from MyTemplates.views import index as tp_index, tv, engtv, carlist, carprice
+from Modal_DB.views import index as db_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -46,4 +47,6 @@ urlpatterns = [
     path('MyTemplates/carlist/<int:makerid>/', carlist, name='carlist_url'),
     path('MyTemplates/carprice/', carprice, name='carprice_url'),
     path('MyTemplates/carprice/<int:makerid>/', carprice, name='carprice_url'),
+    # Modal_DB
+    path('Modal_DB/', db_index),
 ]
