@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'MTV01',
     'URLS',
     'MyTemplates',
+    'Modal_DB',
 ]
 
 MIDDLEWARE = [

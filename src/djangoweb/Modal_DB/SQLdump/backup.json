@@ -1,0 +1,232 @@
+[
+  { "model": "Modal_DB.maker", "pk": 1, "fields": { "name": "Apple", "country": "USA" } },
+  { "model": "Modal_DB.maker", "pk": 2, "fields": { "name": "SONY", "country": "Japan" } },
+  { "model": "Modal_DB.maker", "pk": 3, "fields": { "name": "ASUS", "country": "Taiwan" } },
+  { "model": "Modal_DB.maker", "pk": 4, "fields": { "name": "Nokia", "country": "芬蘭" } },
+  {
+    "model": "Modal_DB.pmodel",
+    "pk": 1,
+    "fields": {
+      "maker": 1,
+      "name": "iPhone 12",
+      "url": "https://www.eprice.com.tw/mobile/intro/c01-p6405-apple-iphone-12-128gb/"
+    }
+  },
+  {
+    "model": "Modal_DB.pmodel",
+    "pk": 2,
+    "fields": {
+      "maker": 2,
+      "name": "Xperia",
+      "url": "https://www.eprice.com.tw/mobile/intro/c01-p6382-sony-xperia-5-ii/"
+    }
+  },
+  {
+    "model": "Modal_DB.pmodel",
+    "pk": 3,
+    "fields": {
+      "maker": 3,
+      "name": "ZenFone",
+      "url": "https://www.eprice.com.tw/mobile/intro/c01-p6378-asus-zenfone-7-zs670ks-6gb_128gb/"
+    }
+  },
+  {
+    "model": "Modal_DB.pmodel",
+    "pk": 4,
+    "fields": {
+      "maker": 3,
+      "name": "ROG Phone",
+      "url": "https://www.eprice.com.tw/mobile/intro/c01-p6378-asus-zenfone-7-zs670ks-6gb_128gb/"
+    }
+  },
+  {
+    "model": "Modal_DB.pmodel",
+    "pk": 5,
+    "fields": { "maker": 4, "name": "3310", "url": "http://i.imgur.com/Ous4iGB.png" }
+  },
+  {
+    "model": "Modal_DB.pmodel",
+    "pk": 6,
+    "fields": { "maker": 4, "name": "x.x", "url": "http://i.imgur.com/Ous4iGB.png" }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 1,
+    "fields": {
+      "pmodel": 1,
+      "nickname": "iPhone 12 (128GB) 超值二手機",
+      "description": "iPhone 12 系列正式發表\r\n在歷經大半年的網路傳聞洗禮後，蘋果一如預期於 10 月 13 日（台灣時間 10 月 14 日）在「Hi, Speed」線上發表會中正式對外發表 2020 年智慧手機款式：iPhone 12 系列。如同先前網路傳聞，這一次 iPhone 12 系列共有四款機種，分別為 iPhone 12 mini、iPhone 12、iPhone 12 Pro 與 iPhone 12 Pro Max，螢幕有三種尺寸，並均支援 5G 連線。",
+      "year": 2020,
+      "price": 999999
+    }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 2,
+    "fields": {
+      "pmodel": 1,
+      "nickname": "iPhone 12 Pro (128GB)",
+      "description": "多彩 vs. 高質感\r\n在外型設計上，新的 iPhone 12 系列一如傳聞將金屬邊框改為類似 iPhone 4 風格的樣式，線條更為平整方正，iPhone 12 mini 與 iPhone 12 採用鋁金屬霧面邊框、iPhone 12 Pro 與 Pro Max 則為不銹鋼材質拋光邊框，四款機種一樣均支援 IP68 防水防塵認證，不過防水能力從上一代的水下 2 公尺 30 分鐘進化為水下 6 公尺 30 分鐘，因此更能抵抗日常生活的浸水意外。",
+      "year": 2020,
+      "price": 8888
+    }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 3,
+    "fields": {
+      "pmodel": 2,
+      "nickname": "SONY Xperia 5 II",
+      "description": "Sony 正式發表 2020 下半年的旗艦手機：Xperia 5 II。以上半年的旗艦 Xperia 1 II 為基礎設計，同樣搭載蔡司三鏡頭的拍照相機，只是在螢幕方面則是改採 FHD+ 的規格，但也首次支援 120Hz 的螢幕更新率設計。",
+      "year": 2020,
+      "price": 4567
+    }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 4,
+    "fields": {
+      "pmodel": 2,
+      "nickname": "SONY Xperia 10 II",
+      "description": "2020 年 MWC 世界通訊大會由於武漢肺炎疫情取消舉辦，各手機品牌也改成線上發表形式發表 2020 上半年度新品；而 Sony Mobile 部分也如稍早規劃，在 2 月 24 日舉辦線上發表會，共發表三款產品，除了旗艦 Xperia 1 II、正在開發中的 Xperia PRO 之外，還有一款中階機種 Xperia 10 II（發音為 Xperia Ten Mark Two）。",
+      "year": 2020,
+      "price": 778899
+    }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 5,
+    "fields": {
+      "pmodel": 3,
+      "nickname": "ASUS ZenFone 7 (ZS670KS) 6GB/128GB",
+      "description": "ASUS ZenFone 7 系列正式亮相\r\n華碩在推出 ROG Phone 3 電競遊戲手機後，旗下另外一個 ZenFone 旗艦系列的後繼款式：ZenFone 7，也就額外受到外界不小期待。而在今（26）日，華碩也一如預告，正式對外發表 ZenFone 7 系列旗艦手機，而且一次就推出了兩款，型號分別為 ASUS ZenFone 7（ZS670KS）以及 ZenFone 7 Pro（ZS671KS）。",
+      "year": 2020,
+      "price": 0
+    }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 6,
+    "fields": {
+      "pmodel": 3,
+      "nickname": "ASUS ZenFone 7 Pro (ZS671KS) 8GB/25",
+      "description": "ASUS ZenFone 7 系列正式亮相\r\n華碩在推出 ROG Phone 3 電競遊戲手機後，旗下另外一個 ZenFone 旗艦系列的後繼款式：ZenFone 7，也就額外受到外界不小期待。而在今（26）日，華碩也一如預告，正式對外發表 ZenFone 7 系列旗艦手機，而且一次就推出了兩款，型號分別為 ASUS ZenFone 7（ZS670KS）以及 ZenFone 7 Pro（ZS671KS）。\r\n\r\nZenFone 7 系列兩款機種之間的差異非常小，除了處理器不同（S865+ vs. S865）以及 RAM / ROM 容量不同之外，就只有 ZenFone 7 Pro 的相機支援 OIS 而 ZenFone 7 沒有而已，其餘規格都一樣。",
+      "year": 2020,
+      "price": 987654
+    }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 7,
+    "fields": {
+      "pmodel": 5,
+      "nickname": "3310 超值二手機",
+      "description": "暫無說明",
+      "year": 2000,
+      "price": 88888
+    }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 8,
+    "fields": {
+      "pmodel": 6,
+      "nickname": "8.3 5G",
+      "description": "依照 HMD Global 說明，Nokia 8.3 5G 不僅是 HMD Global 旗下首款 5G 連網手機，更強調相比其他品牌已經推出的 5G 連網手機可對應完整全球電信業者所採用頻段規格，意味 Nokia 8.3 5G 將可順利配合各地區電信業者提供5G連網服務使用，而不會有頻段規格無法相容情況。",
+      "year": 2020,
+      "price": 11111
+    }
+  },
+  {
+    "model": "Modal_DB.product",
+    "pk": 9,
+    "fields": {
+      "pmodel": 6,
+      "nickname": "7.2",
+      "description": "HMD Global 在 IFA 2019 開展前夕舉辦新品發表會，一口氣發表五款新機，除了有三款功能手機：Nokia 110 / 2720 Flip / 800 Tough 之外，還有兩款搭載 Android One 平台的智慧手機，分別是先前傳聞有提過的 Nokia 7.2 以及 Nokia 6.2。",
+      "year": 2019,
+      "price": 0
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 1,
+    "fields": {
+      "product": 9,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6186/large.png"
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 2,
+    "fields": {
+      "product": 9,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6186/album/02.jpg"
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 3,
+    "fields": {
+      "product": 8,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6273/large.png"
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 4,
+    "fields": {
+      "product": 8,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6273/album/02.jpg"
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 5,
+    "fields": {
+      "product": 5,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6378/large.png"
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 6,
+    "fields": {
+      "product": 5,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6378/album/01.jpg"
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 7,
+    "fields": {
+      "product": 5,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6378/album/01.jpg"
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 8,
+    "fields": {
+      "product": 4,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6265/large.png"
+    }
+  },
+  {
+    "model": "Modal_DB.pphoto",
+    "pk": 9,
+    "fields": {
+      "product": 4,
+      "description": "產品照片",
+      "url": "https://img.eprice.com.tw/img/mobile/6265/album/00.jpg"
+    }
+  }
+]
