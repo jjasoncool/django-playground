@@ -1,60 +1,73 @@
 version: "3.9"
 
 services:
-    django:
-        build:
-            context: "./django/"
-            args:
-              PY_VER: ${PY_VER}
-              PROJECT_NAME: ${PROJECT_NAME}
-              ALLOWED_HOSTS: ${ALLOWED_HOSTS}
-        environment:
-            - TZ=Asia/Taipei
-        expose:
-            - "${DJANGO_PORT}"
-        volumes:
-            - django-src:/usr/src/app
-        container_name: "${DJANGO_NAME}"
-        restart: always
+  django:
+    build:
+      context: "./django/"
+      args:
+        PY_VER: ${PY_VER}
+        PROJECT_NAME: ${PROJECT_NAME}
+        ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+    environment:
+      - TZ=Asia/Taipei
+    depends_on:
+      - db
+    expose:
+      - "${DJANGO_PORT}"
+    volumes:
+      - django-src:/usr/src/app
+    container_name: "${DJANGO_NAME}"
+    restart: always
 
-    nginx:
-        build:
-            context: "./nginx/"
-            args:
-                NGINX_VERSION: ${NGINX_VERSION}
-        environment:
-            - TZ=Asia/Taipei
-            - NGINX_PORT=${NGINX_PORT}
-        depends_on:
-            - django
-        ports:
-            - 8000:${NGINX_PORT}
-        volumes:
-            - nginx-config:/etc/nginx/templates/
-            - ./src/${PROJECT_NAME}/static:/usr/share/nginx/html/static
-            - ./src/${PROJECT_NAME}/media:/usr/share/nginx/html/media
-        container_name: "${NGINX_NAME}"
-        restart: always
+  nginx:
+    build:
+      context: "./nginx/"
+      args:
+        NGINX_VERSION: ${NGINX_VERSION}
+    environment:
+      - TZ=Asia/Taipei
+      - NGINX_PORT=${NGINX_PORT}
+    depends_on:
+      - django
+    ports:
+      - 8000:${NGINX_PORT}
+    volumes:
+      - nginx-config:/etc/nginx/templates/
+      - ./src/${PROJECT_NAME}/static:/usr/share/nginx/html/static
+      - ./src/${PROJECT_NAME}/media:/usr/share/nginx/html/media
+    container_name: "${NGINX_NAME}"
+    restart: always
 
+  db:
+    image: mariadb:${DB_VERSION}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    container_name: ${DB_NAME}
+    ports:
+      - ${DB_PORT}
+    volumes:
+      - /var/lib/mysql
+    restart: always
 
 volumes:
-    django-src:
-        driver: local
-        driver_opts:
-            type: "none"
-            o: "bind"
-            device: "./src/"
-        external: false
+  django-src:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "./src/"
+    external: false
 
-    nginx-config:
-        driver: local
-        driver_opts:
-            type: "none"
-            o: "bind"
-            device: "./config/nginx/"
-        external: false
+  nginx-config:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "./config/nginx/"
+    external: false
 
 networks:
-    default:
-        external:
-            name: ${NET_WORK}
+  default:
+    external:
+      name: ${NET_WORK}
