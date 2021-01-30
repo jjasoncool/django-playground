@@ -12,6 +12,8 @@ def form_index(request):
         urid = request.GET['user_id']
         urpass = request.GET['user_pass']
         se_byear = request.GET['byear']
+        urfcolor = request.GET.getlist('fcolor')
+        radio_movie = request.GET['movie']
 
     except:
         urid = None

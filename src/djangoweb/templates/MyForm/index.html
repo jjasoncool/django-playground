@@ -11,6 +11,20 @@
             <option value='{{ year }}'>{{ year }}</option>
             {% endfor %}
         </select><br>
+        喜歡的顏色(可複選):
+        <input type='checkbox' name='fcolor' value='Green'>Green
+        <input type='checkbox' name='fcolor' value='Red'>Red
+        <input type='checkbox' name='fcolor' value='Blue'>Blue
+        <input type='checkbox' name='fcolor' value='Yellow'>Yellow
+        <input type='checkbox' name='fcolor' value='Orange'>Orange
+        <br>
+        喜好的電影:
+        <input type='radio' name='movie' value='阿拉丁'>阿拉丁
+        <input type='radio' name='movie' value='哥吉拉'>哥吉拉
+        <input type='radio' name='movie' value='你的名字'>你的名字
+        <input type='radio' name='movie' value='神隱少女'>神隱少女
+        <input type='radio' name='movie' value='刺激1995'>刺激1995
+        <br>
         <label for='user_id'>Your ID:</label>
         <input id='user_id' type='text' name='user_id'>
         <label for='user_pass'>Your Password:</label>
@@ -21,6 +35,15 @@
 
     Your ID:{{ urid | default:"未輸入ID"}}<br />
     出生年: {{se_byear}} <br>
+    顏色喜好:
+    {% for color in urfcolor %}
+    {{ color }}
+    {% empty %}
+    沒有選擇任何顏色
+    {% endfor%}
+    <br />
+    喜歡的電影: {{radio_movie}} <br>
+
     {% if verified %}
     <em>你通過了驗證</em>
     {% else %}
