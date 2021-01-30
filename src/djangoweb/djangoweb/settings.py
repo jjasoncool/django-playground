@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'URLS',
     'MyTemplates',
     'Modal_DB',
+    'MyForm',
 ]
 
 MIDDLEWARE = [

@@ -20,6 +20,7 @@ from MTV01.views import about, listing, disp_detail
 from URLS.views import homepage as url_home, about as url_about, reverse_url
 from MyTemplates.views import index as tp_index, tv, engtv, carlist, carprice
 from Modal_DB.views import index as db_index, db_detail
+from MyForm.views import form_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -50,4 +51,6 @@ urlpatterns = [
     # Modal_DB
     path('Modal_DB/', db_index),
     path('Modal_DB/detail/<int:id>', db_detail, name = 'db_detail_url'),
+    # Form
+    path('MyForm/', form_index),
 ]
