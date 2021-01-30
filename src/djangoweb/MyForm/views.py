@@ -26,7 +26,7 @@ def form_index(request):
     return render(request, 'MyForm/index.html', locals())
 
 
-def message_index(request):
+def message_index(request, msgid=None, del_pass=None):
     posts = models.Post.objects.filter(enabled=True).order_by('-pub_time')[:150]
     moods = models.Mood.objects.all()
 
@@ -40,7 +40,22 @@ def message_index(request):
         user_id = None
         message = '如要張貼訊息,則每一個欄位都要填...'
 
-    if user_id != None:
+    if del_pass and msgid:
+        try:
+            post = models.Post.objects.get(id=msgid)
+        except:
+            post = None
+
+        if post:
+            if post.del_pass == del_pass:
+                post.delete()
+                message = "資料刪除成功"
+            else:
+                message = "密碼錯誤"
+        else:
+            message = "查無資料"
+
+    elif user_id != None:
         mood = models.Mood.objects.get(status=user_mood)
         post = models.Post.objects.create(mood=mood, nickname=user_id, del_pass=user_pass, message=user_post)
         post.save()

@@ -54,4 +54,5 @@ urlpatterns = [
     # Form
     path('MyForm/', form_index),
     path('MyForm/message_board/', message_index),
+    path('MyForm/message_board/<int:msgid>/<str:del_pass>', message_index),
 ]
