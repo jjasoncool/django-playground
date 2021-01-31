@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from MyForm import models, forms
 from django.template.loader import get_template
+from django.core.mail import EmailMessage
 
 
 def form_index(request):
@@ -110,6 +111,20 @@ def contact_form(request):
             user_school = form.cleaned_data['user_school']
             user_email = form.cleaned_data['user_email']
             user_message = form.cleaned_data['user_message']
+            mail_body = u'''
+            網友姓名:{}
+            居住城市:{}
+            是否在學:{}
+            反應意見:如下
+            {}'''.format(user_name, user_city, user_school, user_message)
+            email = EmailMessage(
+                '來自【NTU亂亂賣】網站的網友意見',
+                mail_body,
+                user_email,
+                # 管理員(你自己)的email
+                [' my.email@gmail.com ']
+            )
+            email.send()
         else:
             message = "請檢查您輸入的資訊是否正確!"
     else:
