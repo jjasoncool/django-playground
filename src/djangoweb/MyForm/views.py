@@ -69,6 +69,12 @@ def message_index(request, msgid=None, del_pass=None):
 def posting(request):
     moods = models.Mood.objects.all()
     message = '如要張貼訊息,則每一個欄位都要填...'
+
+    user_id = request.POST['user_id']
+    user_pass = request.POST['user_pass']
+    user_post = request.POST['user_post']
+    user_mood = request.POST['mood']
+
     return render(request, 'MyForm/posting.html', locals())
 
 
