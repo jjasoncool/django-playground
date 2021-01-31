@@ -27,7 +27,8 @@ def form_index(request):
 
 
 def message_index(request, msgid=None, del_pass=None):
-    posts = models.Post.objects.filter(enabled=True).order_by('-pub_time')[:150]
+    posts = models.Post.objects.filter(
+        enabled=True).order_by('-pub_time')[:150]
     moods = models.Mood.objects.all()
 
     try:
@@ -57,8 +58,23 @@ def message_index(request, msgid=None, del_pass=None):
 
     elif user_id != None:
         mood = models.Mood.objects.get(status=user_mood)
-        post = models.Post.objects.create(mood=mood, nickname=user_id, del_pass=user_pass, message=user_post)
+        post = models.Post.objects.create(
+            mood=mood, nickname=user_id, del_pass=user_pass, message=user_post)
         post.save()
-        message='成功儲存!請記得你的編輯密碼[{}]!,訊息需經審查後才會顯示。'.format(user_pass)
+        message = '成功儲存!請記得你的編輯密碼[{}]!,訊息需經審查後才會顯示。'.format(user_pass)
 
     return render(request, 'MyForm/message_board.html', locals())
+
+
+def posting(request):
+    moods = models.Mood.objects.all()
+    message = '如要張貼訊息,則每一個欄位都要填...'
+    return render(request, 'MyForm/posting.html', locals())
+
+
+def formlist(request):
+    posts = models.Post.objects.filter(
+        enabled=True).order_by('-pub_time')[:150]
+    moods = models.Mood.objects.all()
+
+    return render(request, 'MyForm/listing.html', locals())
