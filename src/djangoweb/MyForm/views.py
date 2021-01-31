@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from MyForm import models
+from MyForm import models, forms
 from django.template.loader import get_template
 
 
@@ -67,13 +67,25 @@ def message_index(request, msgid=None, del_pass=None):
 
 
 def posting(request):
+    posts = models.Post.objects.filter(
+        enabled=True).order_by('-pub_time')[:150]
     moods = models.Mood.objects.all()
-    message = '如要張貼訊息,則每一個欄位都要填...'
+    try:
+        user_id = request.POST['user_id']
+        user_pass = request.POST['user_pass']
+        user_post = request.POST['user_post']
+        user_mood = request.POST['mood']
 
-    user_id = request.POST['user_id']
-    user_pass = request.POST['user_pass']
-    user_post = request.POST['user_post']
-    user_mood = request.POST['mood']
+    except:
+        user_id = None
+        message = '如要張貼訊息,則每一個欄位都要填...'
+
+    if user_id != None:
+        mood = models.Mood.objects.get(status=user_mood)
+        post = models.Post.objects.create(
+            mood=mood, nickname=user_id, del_pass=user_pass, message=user_post)
+        post.save()
+        message = '成功儲存!請記得你的編輯密碼[{}]!,訊息請至下方查詢。'.format(user_pass)
 
     return render(request, 'MyForm/posting.html', locals())
 
@@ -84,3 +96,24 @@ def formlist(request):
     moods = models.Mood.objects.all()
 
     return render(request, 'MyForm/listing.html', locals())
+
+
+def contact_form(request):
+    if request.method == 'POST':
+        # post 時，對資料做事
+        form = forms.ContactForm(request.POST)
+        # 後端驗證資料
+        if form.is_valid():
+            message = "感謝您的來信。"
+            user_name = form.cleaned_data['user_name']
+            user_city = form.cleaned_data['user_city']
+            user_school = form.cleaned_data['user_school']
+            user_email = form.cleaned_data['user_email']
+            user_message = form.cleaned_data['user_message']
+        else:
+            message = "請檢查您輸入的資訊是否正確!"
+    else:
+        # 非 post，輸出表單樣式
+        form = forms.ContactForm()
+
+    return render(request, 'MyForm/contact.html', locals())
