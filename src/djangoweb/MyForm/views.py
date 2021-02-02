@@ -132,3 +132,9 @@ def contact_form(request):
         form = forms.ContactForm()
 
     return render(request, 'MyForm/contact.html', locals())
+
+def post2db(request):
+    post_form = forms.PostForm()
+    moods = models.Mood.objects.all()
+    message = '如要張貼訊息,則每一個欄位都要填...'
+    return render(request, 'MyForm/post2db.html', locals())
