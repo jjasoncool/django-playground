@@ -14,6 +14,7 @@ RUN pip install -r /config/requirements.txt
 
 ARG PROJECT_NAME
 ARG ALLOWED_HOSTS
+ARG CSRF_TRUSTED_ORIGINS
 RUN django-admin startproject ${PROJECT_NAME}
 
 WORKDIR /usr/src/app/${PROJECT_NAME}
@@ -26,15 +27,16 @@ COPY uwsgi.ini uwsgi.ini
 RUN python manage.py startapp mainsite
 # import os
 RUN sed -i "s|from pathlib import Path|import os\nfrom pathlib import Path|g;" ./${PROJECT_NAME}/settings.py
-# 取代預設 ALLOW_HOST 與 STATIC_URL字串
-RUN sed -i "s|ALLOWED_HOSTS = \[\]|ALLOWED_HOSTS = \[${ALLOWED_HOSTS}\]|g; s|STATIC_URL = '/static/'||g;" ./${PROJECT_NAME}/settings.py
+# 取代預設 ALLOW_HOST 與 STATIC_URL 字串，新增 CSRF_TRUSTED_ORIGINS
+RUN sed -i "s|ALLOWED_HOSTS = \[\]|ALLOWED_HOSTS = \[${ALLOWED_HOSTS}\]\nCSRF_TRUSTED_ORIGINS = \[${CSRF_TRUSTED_ORIGINS}\]|g; s|STATIC_URL = '/static/'||g;" ./${PROJECT_NAME}/settings.py
 # 新增設定
-RUN echo '\
+RUN sed -i "s|STATIC_URL = 'static/'|\
 # STATIC ROOT 和 STATIC URL\n\
-STATIC_ROOT = os.path.join(BASE_DIR, "static")\n\
-STATIC_URL = "/static/"\n\
+STATIC_ROOT = os.path.join(BASE_DIR, \"static\")\n\
+STATIC_URL = \"static/\"\n\
 # MEDIA ROOT 和 MEDIA URL\n\
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")\n\
-MEDIA_URL = "/media/"' >> ./${PROJECT_NAME}/settings.py
+MEDIA_ROOT = os.path.join(BASE_DIR, \"media\")\n\
+MEDIA_URL = \"media/\"\
+|g;" ./${PROJECT_NAME}/settings.py
 # start service
 CMD bash ./start.sh
