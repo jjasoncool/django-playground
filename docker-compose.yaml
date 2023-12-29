@@ -8,6 +8,10 @@ services:
         PY_VER: ${PY_VER}
         PROJECT_NAME: ${PROJECT_NAME}
         ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+        CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS}
+        SUB_PATH: ${SUB_PATH}
+        TIMEZONE: ${TIMEZONE}
+        LANGCODE: ${LANGCODE}
     environment:
       - TZ=Asia/Taipei
     depends_on:
