@@ -2,5 +2,6 @@ Django>=3.1.1
 uwsgi
 pytz
 mysqlclient
+celery
 # If you need to use mssql
 # mssql-django

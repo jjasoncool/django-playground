@@ -1,7 +1,7 @@
 # django-playground
 
 ## Setup
-
+First, you need to create ./src folder.
 ```
 docker-compose up -d
 ```
